@@ -7,6 +7,8 @@ export const submitResponse = async (req: Request, res: Response) => {
     const { username, code_language, source_code, timeStamp, std_input } =
       req.body;
 
+    console.log(username, code_language, source_code, std_input);
+
     if (!username || !code_language || !source_code) {
       return res.sendStatus(401);
     }
@@ -21,7 +23,7 @@ export const submitResponse = async (req: Request, res: Response) => {
       },
     });
 
-    return res.send(202).json({ response: queryResponseToDB });
+    return res.json({ response: queryResponseToDB }).status(202);
   } catch (error) {
     return res.sendStatus(500);
   }

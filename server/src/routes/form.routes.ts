@@ -4,8 +4,7 @@ import { submitResponse } from "../controller/submission.controller";
 
 const router: Router = Router();
 
-router
-  .post("/submit", submitResponse)
-  .get("/fetch", fetchSubmittedResponses);
+router.post("/submit", submitResponse);
+router.get("/fetch", fetchSubmittedResponses);
 
 export default router;

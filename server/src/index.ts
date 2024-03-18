@@ -11,8 +11,8 @@ const app = express();
 
 app
   .use(bodyParser.json())
-  .use(cors())
   .use(bodyParser.urlencoded({ extended: false }))
+  .use(cors())
   .use(morgan(":method :url :status :res[content-length] - :response-time ms"))
   .use("/api/form", responseRoutes);
 

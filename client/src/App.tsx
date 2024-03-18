@@ -1,6 +1,7 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Navbar from "./components/navbar";
-import Form from "./components/form";
+import Form from "./pages/form";
+import Responses from "./pages/responses";
 
 function App() {
   return (
@@ -9,6 +10,8 @@ function App() {
         <Navbar />
         <Routes>
           <Route index element={<Form />} />
+          <Route path="/responses" element={<Responses />} />
+          <Route path="/responses/:page" element={<Responses />} />
         </Routes>
       </BrowserRouter>
     </div>
