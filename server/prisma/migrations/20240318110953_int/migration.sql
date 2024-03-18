@@ -1,0 +1,2 @@
+-- AlterTable
+ALTER TABLE `Responses` MODIFY `id` INTEGER NOT NULL AUTO_INCREMENT;

@@ -14,7 +14,7 @@ datasource db {
 }
 
 model Responses {
-  id            Int      @id
+  id            Int      @id @default(autoincrement())
   username      String
   code_language String   @default("python")
   source_code   String   @db.LongText
