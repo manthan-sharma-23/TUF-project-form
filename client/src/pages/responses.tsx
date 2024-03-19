@@ -61,7 +61,7 @@ export default function Responses() {
   const [loading, setLoading] = React.useState(false);
   const rows = useGetResponses({ setLoading });
   const [page, setPage] = React.useState(0);
-  const [rowsPerPage, setRowsPerPage] = React.useState(10);
+  const [rowsPerPage, setRowsPerPage] = React.useState(15);
 
   console.log(rows);
 
@@ -97,28 +97,39 @@ export default function Responses() {
             {rows &&
               rows
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                .map((row) => {
+                .map((row, index) => {
                   return (
-                    <TableRow hover role="checkbox" tabIndex={-1} key={row.id}>
-                      {columns.map((column) => {
-                        const value = String(row[column.id]);
-                        console.log(value);
-                        return (
-                          <TableCell key={column.id} align={column.align}>
-                            {value.length < 100
-                              ? value
-                              : value.slice(0, 100) + "..."}
-                          </TableCell>
-                        );
-                      })}
-                    </TableRow>
+                    <>
+                      <TableRow
+                        hover
+                        role="checkbox"
+                        tabIndex={-1}
+                        key={row.id}
+                      >
+                        {columns.map((column) => {
+                          const value = String(row[column.id]);
+                          if (column.id === "id") {
+                            console.log(value);
+                          }
+                          return (
+                            <TableCell key={column.id} align={column.align}>
+                              {column.id === "id"
+                                ? index + 1
+                                : value.length < 100
+                                ? value
+                                : value.slice(0, 100) + "..."}
+                            </TableCell>
+                          );
+                        })}
+                      </TableRow>
+                    </>
                   );
                 })}
           </TableBody>
         </Table>
       </TableContainer>
       <TablePagination
-        rowsPerPageOptions={[10, 25, 100]}
+        rowsPerPageOptions={[15, 100]}
         component="div"
         count={rows?.length || 0}
         rowsPerPage={rowsPerPage}

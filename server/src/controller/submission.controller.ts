@@ -1,5 +1,7 @@
 import { Request, Response } from "express";
 import { db } from "../utils/db";
+import { redis, removeCacheValue } from "../services/redis";
+import { REDIS_CACHE_KEY } from "../utils/utils";
 
 //Submit a user input form
 export const submitResponse = async (req: Request, res: Response) => {
@@ -22,6 +24,8 @@ export const submitResponse = async (req: Request, res: Response) => {
         stdin: std_input,
       },
     });
+
+    await removeCacheValue();
 
     return res.json({ response: queryResponseToDB }).status(202);
   } catch (error) {
