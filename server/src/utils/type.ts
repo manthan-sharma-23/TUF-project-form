@@ -18,7 +18,6 @@ export interface Data {
 export interface Language {
   id: number;
   name: string;
-  is_archived: boolean;
 }
 
 export interface JudgeExecutionResult {
@@ -29,5 +28,6 @@ export interface JudgeExecutionResult {
     id:number
     description: string;
   };
-  stderr:string
+  stderr:string;
+  
 }

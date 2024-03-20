@@ -8,8 +8,6 @@ export const submitResponse = async (req: Request, res: Response) => {
   try {
     const { username, language, source_code, timeStamp, std_input } = req.body;
 
-    console.log(language);
-
     if (!username || !source_code || !language) {
       return res.sendStatus(401);
     }

@@ -1,4 +1,4 @@
-import express from "express";
+import express, { Response } from "express";
 import { PORT } from "./utils/utils";
 import bodyParser from "body-parser";
 import { config } from "dotenv";
@@ -6,6 +6,7 @@ import cors from "cors";
 import morgan from "morgan";
 import responseRoutes from "./routes/form.routes";
 import compilerRoutes from "./routes/judge.routes";
+import { ping } from "./services/redis/redis";
 
 config();
 const app = express();
@@ -16,8 +17,13 @@ app
   .use(cors())
   .use(morgan(":method :url :status :res[content-length] - :response-time ms"))
   .use("/api/form", responseRoutes)
-  .use("/api/compiler", compilerRoutes);
+  .use("/api/compiler", compilerRoutes)
+  .get("/", async (_, res: Response) => {
+    const a = await ping();
+    res.send(a);
+  });
 
 app.listen(PORT, () => {
+  ping();
   console.log(`Server listening on PORT ${PORT}`);
 });
