@@ -82,7 +82,7 @@ export default function Responses() {
 
   console.log(rows);
 
-  const handleChangePage = (event: unknown, newPage: number) => {
+  const handleChangePage = (_event: unknown, newPage: number) => {
     setPage(newPage);
   };
 
