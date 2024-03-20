@@ -4,7 +4,7 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "build": "npx tsc -b",
+    "build": "yarn && npx tsc -b && npx prisma migrate dev --name init",
     "dev": "npx tsc-watch --onSuccess \"node dist\""
   },
   "dependencies": {
@@ -16,13 +16,13 @@
     "ioredis": "^5.3.2",
     "morgan": "^1.10.0",
     "prisma": "^5.11.0",
-    "ts-node": "^10.9.2",
-    "typescript": "^5.4.2"
+    "ts-node": "^10.9.2"
   },
   "devDependencies": {
     "@types/cors": "^2.8.17",
     "@types/dotenv": "^8.2.0",
     "@types/express": "^4.17.21",
-    "@types/morgan": "^1.9.9"
+    "@types/morgan": "^1.9.9",
+    "typescript": "^5.4.2"
   }
 }
