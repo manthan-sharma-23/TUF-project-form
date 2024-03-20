@@ -19,11 +19,11 @@ app
   .use("/api/form", responseRoutes)
   .use("/api/compiler", compilerRoutes)
   .get("/", async (_, res: Response) => {
+    console.log("New");
     const a = await ping();
     res.send(a);
   });
 
 app.listen(PORT, () => {
-  ping();
   console.log(`Server listening on PORT ${PORT}`);
 });
