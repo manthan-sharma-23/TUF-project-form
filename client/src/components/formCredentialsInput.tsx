@@ -9,18 +9,20 @@ import {
   TextField,
 } from "@mui/material";
 import React from "react";
-import { code_languages_available, FormInput } from "../utils/types";
+import { code_languages_available, FormInput, Language } from "../utils/types";
 
 const FormCredentialsInput = ({
   formInput,
   setFormInput,
   handleSubmitForm,
   handleReset,
+  languages,
 }: {
   formInput: FormInput;
   setFormInput: React.Dispatch<React.SetStateAction<FormInput>>;
   handleSubmitForm: () => void;
   handleReset: () => void;
+  languages: Language[];
 }) => {
   return (
     <div className="h-full w-full flex justify-between items-center flex-col gap-5 pl-4">
@@ -59,30 +61,10 @@ const FormCredentialsInput = ({
             <MenuItem value="">
               <em>None</em>
             </MenuItem>
-            <MenuItem value={code_languages_available.C}>
-              {code_languages_available.C}
-            </MenuItem>
-            <MenuItem value={code_languages_available.CPP}>
-              {code_languages_available.CPP}
-            </MenuItem>
-            <MenuItem value={code_languages_available.JAVA}>
-              {code_languages_available.JAVA}
-            </MenuItem>
-            <MenuItem value={code_languages_available.JAVASCRIPT}>
-              {code_languages_available.JAVASCRIPT}
-            </MenuItem>
-            <MenuItem value={code_languages_available.TYPESCRIPT}>
-              {code_languages_available.TYPESCRIPT}
-            </MenuItem>
-            <MenuItem value={code_languages_available.PHP}>
-              {code_languages_available.PHP}
-            </MenuItem>
-            <MenuItem value={code_languages_available.GOLANG}>
-              {code_languages_available.GOLANG}
-            </MenuItem>
-            <MenuItem value={code_languages_available.RUST}>
-              {code_languages_available.RUST}
-            </MenuItem>
+            {languages &&
+              languages.map((language) => {
+                return <MenuItem value={language.id}>{language.name}</MenuItem>;
+              })}
           </Select>
         </FormControl>
         <FormControl className="w-full">

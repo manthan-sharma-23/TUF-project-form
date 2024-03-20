@@ -4,6 +4,7 @@ import { FormInput, code_languages_available } from "../utils/types";
 import { submitFormResponse } from "../features/server_calls/submitFormResponse";
 import FormCredentialsInput from "../components/formCredentialsInput";
 import FormCodeEditor from "../components/formCodeEditor";
+import { useGetActiveLanguages } from "../features/hooks/useGetActiveLanguages";
 
 const formValueInitial: Partial<FormInput> = {
   username: "",
@@ -17,6 +18,8 @@ const Form = () => {
   const [formInput, setFormInput] = useState<FormInput>(formValueInitial);
 
   const [loading, setLoading] = useState(false);
+
+  const languages = useGetActiveLanguages({setLoading});
 
   const handleSubmitForm = () => {
     if (!formInput.username || !formInput.code_language || !formInput.std_input)
@@ -45,6 +48,7 @@ const Form = () => {
           setFormInput={setFormInput}
           handleSubmitForm={handleSubmitForm}
           handleReset={handleReset}
+          languages={languages}
         />
       </div>
       <div className="w-[80%] h-full">

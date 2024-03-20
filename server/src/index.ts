@@ -5,6 +5,7 @@ import { config } from "dotenv";
 import cors from "cors";
 import morgan from "morgan";
 import responseRoutes from "./routes/form.routes";
+import compilerRoutes from "./routes/judge.routes";
 
 config();
 const app = express();
@@ -14,7 +15,8 @@ app
   .use(bodyParser.urlencoded({ extended: false }))
   .use(cors())
   .use(morgan(":method :url :status :res[content-length] - :response-time ms"))
-  .use("/api/form", responseRoutes);
+  .use("/api/form", responseRoutes)
+  .use("/api/compiler", compilerRoutes);
 
 app.listen(PORT, () => {
   console.log(`Server listening on PORT ${PORT}`);

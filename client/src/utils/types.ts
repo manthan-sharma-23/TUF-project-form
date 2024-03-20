@@ -25,3 +25,9 @@ export interface Data {
   output: number;
   submitted_at: Date;
 }
+
+export interface Language {
+  id: number;
+  name: string;
+  is_archived: boolean;
+}
