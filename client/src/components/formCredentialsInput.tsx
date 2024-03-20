@@ -9,7 +9,7 @@ import {
   TextField,
 } from "@mui/material";
 import React from "react";
-import { code_languages_available, FormInput, Language } from "../utils/types";
+import { FormInput, Language } from "../utils/types";
 
 const FormCredentialsInput = ({
   formInput,
@@ -49,12 +49,11 @@ const FormCredentialsInput = ({
             onChange={(event: SelectChangeEvent) =>
               setFormInput((value) => ({
                 ...value,
-                code_language: event.target.value,
+                language: event.target.value,
               }))
             }
             defaultOpen={false}
-            defaultValue={code_languages_available.JAVASCRIPT}
-            value={formInput.code_language}
+            value={formInput.language}
             input={<OutlinedInput label="Select Code Language" />}
             className="w-full"
           >
@@ -63,7 +62,14 @@ const FormCredentialsInput = ({
             </MenuItem>
             {languages &&
               languages.map((language) => {
-                return <MenuItem value={language.id}>{language.name}</MenuItem>;
+                return (
+                  <MenuItem
+                    key={language.id}
+                    value={language.id + " " + language.name}
+                  >
+                    {language.name}
+                  </MenuItem>
+                );
               })}
           </Select>
         </FormControl>

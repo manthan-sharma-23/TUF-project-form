@@ -14,11 +14,14 @@ datasource db {
 }
 
 model Responses {
-  id            Int      @id @default(autoincrement())
-  username      String
-  code_language String   @default("python")
-  source_code   String   @db.LongText
-  stdin         String?  @default("keyboard")
-  submitted_at  DateTime @default(now())
-  output        String?
+  id               Int      @id @default(autoincrement())
+  username         String
+  code_language    String   @default("python")
+  code_language_id Int      @default(-1)
+  source_code      String   @db.LongText
+  stdin            String?  @default("keyboard")
+  submitted_at     DateTime @default(now())
+  stdout           String?
+  status           String?
+  stderr           String?
 }

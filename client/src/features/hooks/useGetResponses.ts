@@ -15,6 +15,7 @@ export const useGetResponses = ({
       .then((data) => {
         setLoading(false);
         if (data === null) return;
+        console.log(data)
         setData(data);
       })
       .catch((e) => {

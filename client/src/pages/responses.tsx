@@ -9,6 +9,7 @@ import TablePagination from "@mui/material/TablePagination";
 import TableRow from "@mui/material/TableRow";
 import { useGetResponses } from "../features/hooks/useGetResponses";
 import { Backdrop, CircularProgress } from "@mui/material";
+import moment from "moment";
 
 interface Column {
   id:
@@ -17,7 +18,9 @@ interface Column {
     | "code_language"
     | "source_code"
     | "submitted_at"
-    | "output";
+    | "stdout"
+    | "stderr"
+    | "status";
   label: string;
   minWidth?: number;
   align?: "right";
@@ -42,7 +45,21 @@ const columns: readonly Column[] = [
     format: (value: number) => value.toLocaleString("en-US"),
   },
   {
-    id: "output",
+    id: "stderr",
+    label: "Error",
+    minWidth: 50,
+    align: "right",
+    format: (value: number) => value.toFixed(2),
+  },
+  {
+    id: "status",
+    label: "Status",
+    minWidth: 50,
+    align: "right",
+    format: (value: number) => value.toFixed(2),
+  },
+  {
+    id: "stdout",
     label: "Output",
     minWidth: 50,
     align: "right",
@@ -113,7 +130,11 @@ export default function Responses() {
                           }
                           return (
                             <TableCell key={column.id} align={column.align}>
-                              {column.id === "id"
+                              {column.id === "submitted_at"
+                                ? moment(value).format(
+                                    "MMMM Do YYYY, h:mm:ss a"
+                                  )
+                                : column.id === "id"
                                 ? index + 1
                                 : value.length < 100
                                 ? value

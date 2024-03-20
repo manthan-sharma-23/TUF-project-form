@@ -1,20 +1,9 @@
 export interface FormInput {
   username?: string;
   code_language?: string;
+  code_language_id?: number;
   std_input?: string;
   source_code?: string;
-}
-
-export enum code_languages_available {
-  JAVA = "Java",
-  PYTHON = "Python",
-  CPP = "C++",
-  C = "C",
-  JAVASCRIPT = "Javascript",
-  TYPESCRIPT = "Typescript",
-  PHP = "Php",
-  GOLANG = "Go-lang",
-  RUST = "Rust",
 }
 
 export interface Data {
@@ -22,7 +11,7 @@ export interface Data {
   username: string;
   source_code: string;
   code_language: string;
-  output: number;
+  output: string;
   submitted_at: Date;
 }
 
@@ -30,4 +19,15 @@ export interface Language {
   id: number;
   name: string;
   is_archived: boolean;
+}
+
+export interface JudgeExecutionResult {
+  stdout: string;
+  time: string;
+  token: string;
+  status: {
+    id:number
+    description: string;
+  };
+  stderr:string
 }

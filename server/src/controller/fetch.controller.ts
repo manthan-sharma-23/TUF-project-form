@@ -1,11 +1,10 @@
 import { Request, Response } from "express";
 import { db } from "../utils/db";
-import { getCacheValue, setCacheValue } from "../services/redis";
-import { Data } from "../utils/type";
+import { getResponseCacheValue, setResponseCacheValue } from "../services/redis/controller";
 
 export const fetchSubmittedResponses = async (req: Request, res: Response) => {
   try {
-    const responseCachedValue = await getCacheValue();
+    const responseCachedValue = await getResponseCacheValue();
     if (responseCachedValue) {
       return res.status(201).json(responseCachedValue);
     }
@@ -15,7 +14,7 @@ export const fetchSubmittedResponses = async (req: Request, res: Response) => {
       },
       take: 15,
     });
-    await setCacheValue(responses);
+    await setResponseCacheValue(responses);
 
     return res.status(201).json(responses);
   } catch (error) {
