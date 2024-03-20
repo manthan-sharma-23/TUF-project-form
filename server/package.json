@@ -4,7 +4,7 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "build": "yarn && npx tsc -b && npx prisma migrate dev --name init",
+    "build": "npm i && npx tsc -b && npx prisma migrate dev --name init",
     "dev": "npx tsc-watch --onSuccess \"node dist\""
   },
   "dependencies": {
