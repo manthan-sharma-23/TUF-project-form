@@ -12,3 +12,5 @@ export const Judge0AuthHeaders = {
   "X-RapidAPI-Host": "judge0-extra-ce.p.rapidapi.com",
   "X-RapidAPI-Key": process.env.X_RAPIDAPI_KEY!,
 };
+
+export const oneTimeFetchTake = 10;

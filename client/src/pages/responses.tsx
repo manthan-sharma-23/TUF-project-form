@@ -11,20 +11,19 @@ import { useGetResponses } from "../features/hooks/useGetResponses";
 import { Backdrop, Button, CircularProgress } from "@mui/material";
 import moment from "moment";
 import { columns } from "../utils/response.utils";
-import { useRecoilValue } from "recoil";
+import { useRecoilValue, useSetRecoilState } from "recoil";
 import { LoadingAtom } from "../features/store/atoms/loading.state";
+import { ResponseBundleCountAtom } from "../features/store/atoms/responseBundleCountState";
 
 export default function Responses() {
   const loading = useRecoilValue(LoadingAtom);
   const rows = useGetResponses();
+  const setBundleNumber = useSetRecoilState(ResponseBundleCountAtom);
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(15);
-  const [bundle, setBundle] = React.useState(15);
-
-  console.log(bundle);
 
   const handleLoadMore = () => {
-    setBundle((v) => v + 15);
+    setBundleNumber((v) => v + 1);
   };
 
   const handleChangePage = (_event: unknown, newPage: number) => {
@@ -92,7 +91,7 @@ export default function Responses() {
                                     "MMMM Do YYYY, h:mm:ss a"
                                   )
                                 : column.id === "id"
-                                ? index + 1
+                                ? page * rowsPerPage + index + 1
                                 : value.length > 50
                                 ? value.slice(0, 50) + " ..."
                                 : value}
@@ -113,7 +112,7 @@ export default function Responses() {
           </Button>
         </div>
         <TablePagination
-          rowsPerPageOptions={[15, 100]}
+          rowsPerPageOptions={[20, 30]}
           component="div"
           count={rows?.length || 0}
           rowsPerPage={rowsPerPage}
