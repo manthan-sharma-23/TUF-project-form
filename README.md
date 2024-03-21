@@ -33,6 +33,8 @@ npm install
 ```
 Create a **.env** file and fill it as **.env.example** file
 After creating and configuring .env file
+
+Pick **X_RAPIDAPI_HOST** and **X_RAPIDAPI_KEY** from Rapid Api  Freemium Plan [Judge0 Extra CE](https://rapidapi.com/judge0-official/api/judge0-extra-ce/pricing)
 ```
 npm run build
 npm run dev
