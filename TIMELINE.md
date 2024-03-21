@@ -38,3 +38,4 @@
 - In the application (backend) we are using external **Judge0 API** , better we can do is setting up locally the Judge0 application in **ec2 instance** and somehow keep the docker container / service running with a program manager (lack of time).
 - Better UI for users.
 - Improve system latency (my roommate says its too slow).
+- Writing Tests

@@ -25,7 +25,7 @@ npm run dev
 
 ### Backend Setup
 
-**Local Setup**
+**Manual Setup**
 All the steps from the **root of directory**.
 ```
 cd server
@@ -40,5 +40,4 @@ npm run dev
 
 **Your application should up and running by now.**
 
-**Through Docker**
 
