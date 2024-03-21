@@ -38,12 +38,7 @@ export const submitResponse = async (req: Request, res: Response) => {
 
     await removeResponseCacheValue();
 
-    return res
-      .json({
-        output: compileResult.stdout,
-        execution_time: compileResult.time,
-      })
-      .status(202);
+    return res.json(compileResult).status(202);
   } catch (error) {
     console.log(error);
     return res.sendStatus(500);

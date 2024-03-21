@@ -1,13 +1,14 @@
-import { useEffect, useState } from "react";
-import { Language } from "../../utils/types";
+import { useEffect } from "react";
 import { getActiveCompilerLanguages } from "../server_calls/getActiveCompilerLanguages";
+import { useRecoilState } from "recoil";
+import { languageAtom } from "../../store/atoms/languages.state";
 
 export const useGetActiveLanguages = ({
   setLoading,
 }: {
   setLoading: React.Dispatch<React.SetStateAction<boolean>>;
 }) => {
-  const [languages, setLanguages] = useState<Language[]>([]);
+  const [languages, setLanguages] = useRecoilState(languageAtom);
 
   useEffect(() => {
     setLoading(true);

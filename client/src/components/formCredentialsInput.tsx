@@ -9,21 +9,19 @@ import {
   TextField,
 } from "@mui/material";
 import React from "react";
-import { FormInput, Language } from "../utils/types";
+import { useRecoilState, useRecoilValue } from "recoil";
+import { formInputAtom } from "../store/atoms/formInput.state";
+import { languageAtom } from "../store/atoms/languages.state";
 
 const FormCredentialsInput = ({
-  formInput,
-  setFormInput,
   handleSubmitForm,
   handleReset,
-  languages,
 }: {
-  formInput: FormInput;
-  setFormInput: React.Dispatch<React.SetStateAction<FormInput>>;
   handleSubmitForm: () => void;
   handleReset: () => void;
-  languages: Language[];
 }) => {
+  const [formInput, setFormInput] = useRecoilState(formInputAtom);
+  const languages = useRecoilValue(languageAtom);
   return (
     <div className="h-full w-full flex justify-between items-center flex-col gap-5 pl-4">
       <div className="flex flex-col justify-start items-center gap-5 w-full">

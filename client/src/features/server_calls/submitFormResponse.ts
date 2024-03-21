@@ -1,5 +1,5 @@
 import { SERVER_URL } from "../../utils/config";
-import { FormInput } from "../../utils/types";
+import { FormInput, JudgeExecutionResult } from "../../utils/types";
 
 export const submitFormResponse = async (target: FormInput) => {
   const response = await fetch(`${SERVER_URL}/api/form/submit`, {
@@ -17,7 +17,7 @@ export const submitFormResponse = async (target: FormInput) => {
     throw Error;
   }
 
-  await response.json();
+  const data: JudgeExecutionResult = await response.json();
 
-  return true;
+  return data;
 };

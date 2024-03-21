@@ -8,87 +8,24 @@ import TableHead from "@mui/material/TableHead";
 import TablePagination from "@mui/material/TablePagination";
 import TableRow from "@mui/material/TableRow";
 import { useGetResponses } from "../features/hooks/useGetResponses";
-import { Backdrop, CircularProgress } from "@mui/material";
+import { Backdrop, Button, CircularProgress } from "@mui/material";
 import moment from "moment";
-
-interface Column {
-  id:
-    | "id"
-    | "username"
-    | "code_language"
-    | "source_code"
-    | "submitted_at"
-    | "stdout"
-    | "stderr"
-    | "status"
-    | "stdin";
-  label: string;
-  minWidth?: number;
-  align?: "right";
-  format?: (value: number) => string;
-}
-
-const columns: readonly Column[] = [
-  { id: "id", label: "Serial No.", minWidth: 30 },
-  { id: "username", label: "Username", minWidth: 100 },
-  {
-    id: "code_language",
-    label: "Code\u00a0Language",
-    minWidth: 30,
-    align: "right",
-    format: (value: number) => value.toLocaleString("en-US"),
-  },
-  {
-    id: "source_code",
-    label: "Source\u00a0Code",
-    minWidth: 130,
-    align: "right",
-    format: (value: number) => value.toLocaleString("en-US"),
-  },
-  {
-    id: "stdin",
-    label: "Input",
-    minWidth: 60,
-    align: "right",
-    format: (value: number) => value.toFixed(2),
-  },
-  {
-    id: "stderr",
-    label: "Error",
-    minWidth: 50,
-    align: "right",
-    format: (value: number) => value.toFixed(2),
-  },
-  {
-    id: "status",
-    label: "Status",
-    minWidth: 40,
-    align: "right",
-    format: (value: number) => value.toFixed(2),
-  },
-  {
-    id: "stdout",
-    label: "Output",
-    minWidth: 40,
-    align: "right",
-    format: (value: number) => value.toFixed(2),
-  },
-  {
-    id: "submitted_at",
-    label: "Submitted\u00a0At",
-    minWidth: 200,
-    align: "right",
-    format: (value: number) => value.toFixed(2),
-  },
-];
+import { columns } from "../utils/response.utils";
+import { useRecoilState } from "recoil";
+import { LoadingAtom } from "../store/atoms/loading.state";
 
 export default function Responses() {
-  const [loading, setLoading] = React.useState(false);
+  const [loading, setLoading] = useRecoilState(LoadingAtom);
   const rows = useGetResponses({ setLoading });
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(15);
+  const [bundle, setBundle] = React.useState(15);
 
-  console.log(rows);
+  console.log(bundle);
+
+  const handleLoadMore = () => {
+    setBundle((v) => v + 15);
+  };
 
   const handleChangePage = (_event: unknown, newPage: number) => {
     setPage(newPage);
@@ -133,9 +70,7 @@ export default function Responses() {
                       >
                         {columns.map((column) => {
                           const value = String(row[column.id]);
-                          if (column.id === "id") {
-                            console.log(value);
-                          }
+
                           return (
                             <TableCell
                               key={column.id}
@@ -171,15 +106,22 @@ export default function Responses() {
           </TableBody>
         </Table>
       </TableContainer>
-      <TablePagination
-        rowsPerPageOptions={[15, 100]}
-        component="div"
-        count={rows?.length || 0}
-        rowsPerPage={rowsPerPage}
-        page={page}
-        onPageChange={handleChangePage}
-        onRowsPerPageChange={handleChangeRowsPerPage}
-      />
+      <div className="flex justify-between">
+        <div className=" mx-3  w-auto flex justify-center items-center">
+          <Button variant="contained" onClick={handleLoadMore}>
+            Load More
+          </Button>
+        </div>
+        <TablePagination
+          rowsPerPageOptions={[15, 100]}
+          component="div"
+          count={rows?.length || 0}
+          rowsPerPage={rowsPerPage}
+          page={page}
+          onPageChange={handleChangePage}
+          onRowsPerPageChange={handleChangeRowsPerPage}
+        />
+      </div>
       <Backdrop
         sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
         open={loading}

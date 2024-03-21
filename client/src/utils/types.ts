@@ -22,3 +22,14 @@ export interface Language {
   name: string;
   is_archived: boolean;
 }
+
+export interface JudgeExecutionResult {
+  stdout: string;
+  time: string;
+  token: string;
+  status: {
+    id: number;
+    description: string;
+  };
+  stderr: string;
+}

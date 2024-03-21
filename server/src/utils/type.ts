@@ -29,5 +29,4 @@ export interface JudgeExecutionResult {
     description: string;
   };
   stderr:string;
-  
 }

@@ -1,16 +1,12 @@
 import { TextField } from "@mui/material";
-import React from "react";
-import { FormInput } from "../utils/types";
+import ExecutionOutput from "./executionOutput";
+import { useRecoilState } from "recoil";
+import { formInputAtom } from "../store/atoms/formInput.state";
 
-const FormCodeEditor = ({
-  formInput,
-  setFormInput,
-}: {
-  formInput: FormInput;
-  setFormInput: React.Dispatch<React.SetStateAction<FormInput>>;
-}) => {
+const FormCodeEditor = () => {
+  const [formInput, setFormInput] = useRecoilState(formInputAtom);
   return (
-    <div className="h-full w-full px-2">
+    <div className="h-full w-full  relative px-2">
       <TextField
         className="h-full w-full"
         id="outlined-multiline-static"
@@ -26,6 +22,7 @@ const FormCodeEditor = ({
           }))
         }
       />
+      <ExecutionOutput />
     </div>
   );
 };
