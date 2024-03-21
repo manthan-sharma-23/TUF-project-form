@@ -19,7 +19,12 @@ const Form = () => {
   useGetActiveLanguages();
 
   const handleSubmitForm = () => {
-    if (!formInput.username || !formInput.language) return;
+    if (!formInput.username || !formInput.language) {
+      alert(
+        "Incomplete form Input fill username, source_code and Select language"
+      );
+      return;
+    }
     setLoading(true);
     submitFormResponse(formInput)
       .then((data) => {
