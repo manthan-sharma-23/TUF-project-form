@@ -20,7 +20,8 @@ interface Column {
     | "submitted_at"
     | "stdout"
     | "stderr"
-    | "status";
+    | "status"
+    | "stdin";
   label: string;
   minWidth?: number;
   align?: "right";
@@ -40,9 +41,16 @@ const columns: readonly Column[] = [
   {
     id: "source_code",
     label: "Source\u00a0Code",
-    minWidth: 170,
+    minWidth: 130,
     align: "right",
     format: (value: number) => value.toLocaleString("en-US"),
+  },
+  {
+    id: "stdin",
+    label: "Input",
+    minWidth: 60,
+    align: "right",
+    format: (value: number) => value.toFixed(2),
   },
   {
     id: "stderr",
@@ -54,21 +62,21 @@ const columns: readonly Column[] = [
   {
     id: "status",
     label: "Status",
-    minWidth: 50,
+    minWidth: 40,
     align: "right",
     format: (value: number) => value.toFixed(2),
   },
   {
     id: "stdout",
     label: "Output",
-    minWidth: 50,
+    minWidth: 40,
     align: "right",
     format: (value: number) => value.toFixed(2),
   },
   {
     id: "submitted_at",
     label: "Submitted\u00a0At",
-    minWidth: 170,
+    minWidth: 200,
     align: "right",
     format: (value: number) => value.toFixed(2),
   },
@@ -129,16 +137,30 @@ export default function Responses() {
                             console.log(value);
                           }
                           return (
-                            <TableCell key={column.id} align={column.align}>
+                            <TableCell
+                              key={column.id}
+                              align={column.align}
+                              className={
+                                column.id === "status"
+                                  ? value === "Accepted"
+                                    ? "bg-green-300"
+                                    : " bg-yellow-300"
+                                  : column.id === "stderr"
+                                  ? value === "null"
+                                    ? ""
+                                    : "bg-red-400"
+                                  : ""
+                              }
+                            >
                               {column.id === "submitted_at"
                                 ? moment(value).format(
                                     "MMMM Do YYYY, h:mm:ss a"
                                   )
                                 : column.id === "id"
                                 ? index + 1
-                                : value.length < 100
-                                ? value
-                                : value.slice(0, 100) + "..."}
+                                : value.length > 50
+                                ? value.slice(0, 50) + " ..."
+                                : value}
                             </TableCell>
                           );
                         })}

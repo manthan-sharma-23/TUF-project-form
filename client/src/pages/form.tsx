@@ -9,7 +9,7 @@ import { useGetActiveLanguages } from "../features/hooks/useGetActiveLanguages";
 const formValueInitial: FormInput = {
   username: "",
   source_code: "",
-  std_input: "Keyboard",
+  std_input: null,
   language: "",
 };
 
@@ -22,7 +22,7 @@ const Form = () => {
   const languages = useGetActiveLanguages({ setLoading });
 
   const handleSubmitForm = () => {
-    if (!formInput.username || !formInput.language || !formInput.std_input)
+    if (!formInput.username || !formInput.language )
       return;
     setLoading(true);
     submitFormResponse(formInput)

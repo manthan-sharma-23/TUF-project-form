@@ -73,28 +73,18 @@ const FormCredentialsInput = ({
               })}
           </Select>
         </FormControl>
-        <FormControl className="w-full">
-          <InputLabel id="demo-multiple-name-label">
-            Select Standard Input
-          </InputLabel>
-          <Select
-            labelId="demo-multiple-name-label"
-            id="demo-multiple-name"
-            value={formInput.std_input}
-            defaultOpen={false}
-            defaultValue="Keyboard"
-            onChange={(event: SelectChangeEvent) =>
-              setFormInput((value) => ({
-                ...value,
-                std_input: event.target.value,
-              }))
-            }
-            input={<OutlinedInput label="Select Standard Input" />}
-            className="w-full"
-          >
-            <MenuItem value={"Keyboard"}>Keyboard</MenuItem>
-          </Select>
-        </FormControl>
+        <TextField
+          id="outlined-controlled"
+          label="Standard Input"
+          value={formInput.std_input}
+          onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+            setFormInput((value) => ({
+              ...value,
+              std_input: event.target.value,
+            }));
+          }}
+          className="w-full"
+        />
       </div>
       <div className="flex justify-start items-center gap-5 w-full my-4">
         <Button onClick={handleSubmitForm} variant="contained" size="large">
