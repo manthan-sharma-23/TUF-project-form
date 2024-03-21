@@ -3,8 +3,8 @@
 **Please read the [TIMELINE.md](./TIMELINE.md) file to workflow**
 
 ### Application Working Links :
-**Frontend Application:** [tuf-project-form.vercel.app](tuf-project-form.vercel.app)
-**Backend Application:** [https://www.form-tuf.publicvm.com](https://www.form-tuf.publicvm.com)
+- **Frontend Application:** [tuf-project-form.vercel.app](https://tuf-project-form.vercel.app/)
+- **Backend Application:** [https://www.form-tuf.publicvm.com](https://www.form-tuf.publicvm.com)
 
 ## Setup Locally
 - Clone the repository locally
