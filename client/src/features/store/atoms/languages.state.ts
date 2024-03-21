@@ -1,5 +1,5 @@
 import { atom } from "recoil";
-import { Language } from "../../utils/types";
+import { Language } from "../../../utils/types";
 
 const intiailState: Language[] = [];
 
