@@ -10,8 +10,8 @@ import {
 } from "@mui/material";
 import React from "react";
 import { useRecoilState, useRecoilValue } from "recoil";
-import { formInputAtom } from "../store/atoms/formInput.state";
-import { languageAtom } from "../store/atoms/languages.state";
+import { formInputAtom } from "../features/store/atoms/formInput.state";
+import { languageAtom } from "../features/store/atoms/languages.state";
 
 const FormCredentialsInput = ({
   handleSubmitForm,

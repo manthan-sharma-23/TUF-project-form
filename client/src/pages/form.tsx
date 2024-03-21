@@ -7,16 +7,16 @@ import { useRecoilState, useSetRecoilState } from "recoil";
 import {
   formInputAtom,
   formValueInitial,
-} from "../store/atoms/formInput.state";
-import { formOutputAtom } from "../store/atoms/execOutput.state";
-import { LoadingAtom } from "../store/atoms/loading.state";
+} from "../features/store/atoms/formInput.state";
+import { LoadingAtom } from "../features/store/atoms/loading.state";
+import { formOutputAtom } from "../features/store/atoms/execOutput.state";
 
 // Page 1 :: Form Page
 const Form = () => {
   const [formInput, setFormInput] = useRecoilState(formInputAtom);
   const setStdOut = useSetRecoilState(formOutputAtom);
   const [loading, setLoading] = useRecoilState(LoadingAtom);
-  useGetActiveLanguages({ setLoading });
+  useGetActiveLanguages();
 
   const handleSubmitForm = () => {
     if (!formInput.username || !formInput.language) return;

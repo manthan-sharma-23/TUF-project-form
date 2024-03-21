@@ -1,6 +1,6 @@
 import { Box } from "@mui/material";
 import { useRecoilValue } from "recoil";
-import { formOutputAtom } from "../store/atoms/execOutput.state";
+import { formOutputAtom } from "../features/store/atoms/execOutput.state";
 
 const ExecutionOutput = () => {
   const output = useRecoilValue(formOutputAtom);
@@ -23,9 +23,7 @@ const ExecutionOutput = () => {
               <section className="flex w-full ml-4 mt-1" key={key}>
                 <p>{key}</p>
                 <p className="mx-2">:</p>
-                <p>
-                  {typeof value === "object" ? JSON.stringify(value) : value}
-                </p>
+                <p>{value as string}</p>
               </section>
             ))}
           </div>

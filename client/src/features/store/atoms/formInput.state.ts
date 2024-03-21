@@ -1,5 +1,5 @@
 import { atom } from "recoil";
-import { FormInput } from "../../utils/types";
+import { FormInput } from "../../../utils/types";
 
 export const formValueInitial: FormInput = {
     username: "",

@@ -1,7 +1,7 @@
 import { TextField } from "@mui/material";
 import ExecutionOutput from "./executionOutput";
 import { useRecoilState } from "recoil";
-import { formInputAtom } from "../store/atoms/formInput.state";
+import { formInputAtom } from "../features/store/atoms/formInput.state";
 
 const FormCodeEditor = () => {
   const [formInput, setFormInput] = useRecoilState(formInputAtom);

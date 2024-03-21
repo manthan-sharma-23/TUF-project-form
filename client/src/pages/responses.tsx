@@ -11,12 +11,12 @@ import { useGetResponses } from "../features/hooks/useGetResponses";
 import { Backdrop, Button, CircularProgress } from "@mui/material";
 import moment from "moment";
 import { columns } from "../utils/response.utils";
-import { useRecoilState } from "recoil";
-import { LoadingAtom } from "../store/atoms/loading.state";
+import { useRecoilValue } from "recoil";
+import { LoadingAtom } from "../features/store/atoms/loading.state";
 
 export default function Responses() {
-  const [loading, setLoading] = useRecoilState(LoadingAtom);
-  const rows = useGetResponses({ setLoading });
+  const loading = useRecoilValue(LoadingAtom);
+  const rows = useGetResponses();
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(15);
   const [bundle, setBundle] = React.useState(15);
